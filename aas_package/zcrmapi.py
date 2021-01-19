@@ -4,13 +4,24 @@ Created on Sat Jun 20 18:39:56 2020
 
 @author: Admin
 """
-
 import zcrmsdk
-from zcrmsdk import ZCRMRecord
-import zcrmconnection
+#from zcrmsdk import ZCRMRecord
+#import zcrmconnection
 import datetime
 
-zcrmconnection.ZCRMConnection()
+#zcrmconnection.ZCRMConnection()
+       
+def ZCRMConnection(config,refresh_token,user_identifier):
+        
+    zcrmsdk.ZCRMRestClient.initialize(config)
+
+    #generate access tokents from refresh token
+    oauth_client = zcrmsdk.ZohoOAuth.get_client_instance()
+    refresh_token = refresh_token
+    user_identifier = user_identifier
+    oauth_tokens = oauth_client.generate_access_token_from_refresh_token(refresh_token,user_identifier)
+    
+    #print(oauth_tokens)
 
 def get_api_users(user_type):
     try:
@@ -370,7 +381,7 @@ def api_get_application_programs(app_id):
     try:
         imports = []
         d = {}
-        record = ZCRMRecord.get_instance('Deals', app_id)  # module API Name, entityId
+        record = zcrmsdk.ZCRMRecord.get_instance('Deals', app_id)  # module API Name, entityId
         resp = record.get_relatedlist_records('Products')  # related list API Name  
         print(">> Loading app program [App ID] " + app_id + " ,status: " + str(resp.status_code))
         record_ins_arr = resp.data
@@ -394,7 +405,7 @@ def api_get_application_stage_history(app_id):
     try:
         imports = []
         d = {}
-        record = ZCRMRecord.get_instance('Deals', app_id)  # module API Name, entityId
+        record = zcrmsdk.ZCRMRecord.get_instance('Deals', app_id)  # module API Name, entityId
         resp = record.get_relatedlist_records('Stage_History')  # related list API Name  
         print(">> Loading stage history [App ID] " + app_id + " ,status: " + str(resp.status_code))
         record_ins_arr = resp.data

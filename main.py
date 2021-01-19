@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
     refresh_token= os.getenv("ZCRM_REFRESHTOKEN")
     user_identifier= os.getenv("ZCRM_USEREMAIL")    
-    
+
     server = os.getenv("SQL_SERVER")#+","+os.getenv("SQL_PORT")
     database = os.getenv("SQL_DATABASE")
     username = os.getenv("SQL_USER")
@@ -47,5 +47,5 @@ if __name__ == "__main__":
     h = handlers.handler()
     h.config_zcrmapi(config,refresh_token,user_identifier)
     h.config_mysql(server, database, username, password)
-    h.sync_records()    
-    #a.sync_app_checklist()
+    #h.sync_records()    
+    h.sync_app_checklist()

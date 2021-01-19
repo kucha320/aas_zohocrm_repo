@@ -603,7 +603,7 @@ class zcrmapi():
             print(ex.error_details)
             print(ex.error_content) 
         
-    def api_datetime_to_date(timestamp):
+    def api_datetime_to_date(self, timestamp):
         if timestamp is not None:
             #return datetime.datetime.strptime(d, '%Y-%m-%dT%H:%M:%S%z').strftime("%Y-%m-%d")
             sep = max(timestamp.rfind('+'), timestamp.rfind('-'))

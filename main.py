@@ -7,7 +7,7 @@ Created on Tue Jan 19 18:06:16 2021
 
 import os
 from dotenv import load_dotenv,find_dotenv
-from aas_package import *
+from aas_package import handlers
 
 if __name__ == "__main__":
     config = {
@@ -39,6 +39,13 @@ if __name__ == "__main__":
     refresh_token= os.getenv("ZCRM_REFRESHTOKEN")
     user_identifier= os.getenv("ZCRM_USEREMAIL")    
     
-    h = handlers.handler(config,refresh_token,user_identifier)
+    server = os.getenv("SQL_SERVER")#+","+os.getenv("SQL_PORT")
+    database = os.getenv("SQL_DATABASE")
+    username = os.getenv("SQL_USER")
+    password = os.getenv("SQL_PASSWORD")
+    
+    h = handlers.handler()
+    h.config_zcrmapi(config,refresh_token,user_identifier)
+    h.config_mysql(server, database, username, password)
     h.sync_records()    
     #a.sync_app_checklist()

@@ -10,7 +10,9 @@ sys.path.append("../aas_zohocrm_repo/aas_package")
 
 try:
     from .handlers import handler
+    from .zcrmapi import zcrmapi
+    from .aws_rds_mysql import aws_rds_mysql
 except ImportError:
     from handlers import handler
-import zcrmapi
-import aws_rds_mysql
+    from zcrmapi import zcrmapi
+    from aws_rds_mysql import aws_rds_mysql

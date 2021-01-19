@@ -56,7 +56,7 @@ def api_get_leads(allrecords):
         #ttlrecord = 400#No response from crm api
         per_page = 200 #max for crm api
         page = 0#1
-        cvid = 1068421000018779053
+        cvid = 1068421000018779053 #1068421000022008057
         imports = []
         d = {}
         LoopAgain = True
@@ -302,7 +302,7 @@ def api_get_applications(allrecords):
         #ttlrecord = 7251 #No response from crm api
         per_page = 200 #max for crm api
         page = 0#1
-        cvid = 1068421000018779017
+        cvid = 1068421000018779017 #1068421000022008064
         imports = []
         programs = []
         stagehistory = []
@@ -423,6 +423,7 @@ def api_get_campaigns(allrecords):
     try:
         per_page = 200 #max for crm api
         page = 0#1
+        #cvid = 1068421000000012723 #all campaigns
         cvid = 1068421000019075060
         imports = []
         d = {}
@@ -469,7 +470,8 @@ def api_get_tasks(allrecords,forchecklist):
     try:
         per_page = 200 #max for crm api
         page = 0#1
-        cvid = 1068421000019003182 if forchecklist else 1068421000018868068        
+        #cvid = 1068421000000012753 if forchecklist else 1068421000018868068  #all tasks   
+        cvid = 1068421000019003182 if forchecklist else 1068421000018868068     
         imports = []
         d = {}
         LoopAgain = True

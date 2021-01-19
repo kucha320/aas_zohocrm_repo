@@ -12,5 +12,5 @@ try:
     from .handlers import handler
 except ImportError:
     from handlers import handler
-#import zcrmapi
-#import aws_rds_mysql
+import zcrmapi
+import aws_rds_mysql

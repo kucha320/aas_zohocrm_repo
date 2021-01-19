@@ -11,22 +11,12 @@ Install Microsoft ODBC driver for SQL
 > pip install pyodbc 
 """
 
-import os
-from dotenv import load_dotenv,find_dotenv
-load_dotenv(find_dotenv(),verbose=True,override=True)
-
 #import pyodbc 
 import mysql.connector
 import datetime
 
 class aws_rds_mysql():
     def __init__(self, server, database, username, password):
-        # server = os.getenv("SQL_SERVER")#+","+os.getenv("SQL_PORT")
-        # database = os.getenv("SQL_DATABASE")
-        # username = os.getenv("SQL_USER")
-        # password = os.getenv("SQL_PASSWORD")
-        #self.conn = pyodbc.self.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password+';Encrypt=yes;TrustServerCertificate=no;self.connection Timeout=30')
-        #self.conn = pyodbc.self.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password+';Encrypt=yes;TrustServerCertificate=yes;self.connection Timeout=30')
         self.conn = mysql.connector.connect(
                 host = server,
                 database = database,

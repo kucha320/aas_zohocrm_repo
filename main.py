@@ -9,6 +9,9 @@ import os
 from dotenv import load_dotenv,find_dotenv
 from aas_package import handlers
 
+#To load environment file
+load_dotenv(find_dotenv(),verbose=True,override=True)
+
 if __name__ == "__main__":
     config = {
         "client_id": os.getenv("ZCRM_CLIENTID"),
@@ -31,7 +34,7 @@ if __name__ == "__main__":
         "mysql_password":"",
         "mysql_port":"3306",
         #Use the below keys for custom DB persistence
-        "persistence_handler_class" : "Custom",
+        "persistence_handler_class": "Custom",
         "persistence_handler_path": os.getenv("ZCRM_PERSISTENCEHANDLERPATH")
         #"persistence_handler_path": "D:\home\env\zcrm_log\CustomPersistance.py"
         }
@@ -43,9 +46,9 @@ if __name__ == "__main__":
     database = os.getenv("SQL_DATABASE")
     username = os.getenv("SQL_USER")
     password = os.getenv("SQL_PASSWORD")
-    
+
     h = handlers.handler()
     h.config_zcrmapi(config,refresh_token,user_identifier)
     h.config_mysql(server, database, username, password)
-    #h.sync_records()    
     h.sync_app_checklist()
+    h.sync_records()    

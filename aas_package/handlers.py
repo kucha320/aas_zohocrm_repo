@@ -5,13 +5,7 @@ Created on Thu Jan  7 16:58:05 2021
 @author: phoen
 """
 
-#import sys
-#sys.path.append("D:\home\python364x64\Lib\site-packages")
-#sys.path.append("D:\home\python364x64\Lib\site-packages\zcrm")
-#sys.path.append("D:\home\python364x86\Lib\site-packages")
-#sys.path.append("D:\home\python364x86\Lib\site-packages\zcrm")
 from datetime import datetime, timedelta
-#import zcrmapi, aws_rds_mysql#aws_rds_sql #azuresql
 try:
     from .zcrmapi import zcrmapi
     from .aws_rds_mysql import aws_rds_mysql

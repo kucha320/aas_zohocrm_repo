@@ -237,13 +237,13 @@ class aws_rds_mysql():
             if len(self.sql_get_institution_by_id(mylist['Entity ID'])) == 0:             
                 print(">> INSERT : " + str(count) + "/" + str(ttlcount) + " " + mylist['Entity ID'])# + " " + mylist['ID'] + " " + mylist['Name'])
                 self.cursor = self.conn.cursor()
-                sql = "INSERT INTO Institutions (ID, ID2, Name, Type, State, Country, Created_date, Modified_date, Deleted, Deleted_date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,0,'')"
-                self.cursor.execute(sql,(mylist['Entity ID'],mylist['ID'],mylist['Name'],mylist['Type'],mylist['State'],mylist['Country'],self.sql_datetime_format(mylist['Created Date']),self.sql_datetime_format(mylist['Modified Date'])))
+                sql = "INSERT INTO Institutions (ID, ID2, Name, Type, State, Country, Area, Region, Created_date, Modified_date, Deleted, Deleted_date) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,0,'')"
+                self.cursor.execute(sql,(mylist['Entity ID'],mylist['ID'],mylist['Name'],mylist['Type'],mylist['State'],mylist['Country'],mylist['Area'],mylist['Region'],self.sql_datetime_format(mylist['Created Date']),self.sql_datetime_format(mylist['Modified Date'])))
             else: 
                 print(">> UPDATE : " + str(count) + "/" + str(ttlcount) + " " + mylist['Entity ID'])  
                 self.cursor = self.conn.cursor()
-                sql = "UPDATE Institutions SET Name=%s, Type=%s, State=%s, Country=%s, Modified_date=%s WHERE ID = %s"
-                self.cursor.execute(sql,(mylist['Name'],mylist['Type'],mylist['State'],mylist['Country'],self.sql_datetime_format(mylist['Modified Date']), str(mylist['Entity ID'])))
+                sql = "UPDATE Institutions SET Name=%s, Type=%s, State=%s, Country=%s, Area=%s, Region=%s, Modified_date=%s WHERE ID = %s"
+                self.cursor.execute(sql,(mylist['Name'],mylist['Type'],mylist['State'],mylist['Country'],mylist['Area'],mylist['Region'],self.sql_datetime_format(mylist['Modified Date']), str(mylist['Entity ID'])))
             self.conn.commit()
         
     def sql_get_institution_by_id(self, input_id):

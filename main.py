@@ -52,3 +52,5 @@ if __name__ == "__main__":
     h.config_mysql(server, database, username, password)
     h.sync_app_checklist()
     h.sync_records()    
+    
+

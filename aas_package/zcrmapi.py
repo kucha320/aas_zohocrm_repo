@@ -243,6 +243,8 @@ class zcrmapi():
                     d['Country'] = record_ins.get_field_value('Country')
                     d['Owner'] = record_ins.owner.name
                     d['Owner ID'] = record_ins.owner.id
+                    d['Area'] = record_ins.get_field_value('Area')
+                    d['Region'] = record_ins.get_field_value('Region')
                     d['Created Date'] = record_ins.created_time                            
                     d['Modified Date'] = record_ins.modified_time
                     imports.append(d.copy())
@@ -342,6 +344,8 @@ class zcrmapi():
                     d['Name'] = record_ins.get_field_value('Deal_Name')
                     d['Office'] = record_ins.get_field_value('Office')
                     d['Closing Date'] = record_ins.get_field_value('Closing_Date')
+                    d['Field of Study'] = record_ins.get_field_value('Field_of_Study')
+                    d['Paid at'] = record_ins.get_field_value('Paid_at')
                     d['Stage'] = record_ins.get_field_value('Stage')
                     d['Contact ID']  = record_ins.field_data['Contact_Name']['id'] if 'Contact_Name' in record_ins_data else 0
                     d['Sales_Cycle_Duration'] = record_ins.get_field_value('Sales_Cycle_Duration')
@@ -351,7 +355,7 @@ class zcrmapi():
                     d['Owner ID'] = record_ins.owner.id
                     d['Created Date'] = record_ins.created_time                            
                     d['Modified Date'] = record_ins.modified_time
-                    imports.append(d.copy())    
+                    imports.append(d.copy())     
                     
                     ### Get App Program ###
                     d2 = {}

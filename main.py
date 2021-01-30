@@ -8,6 +8,7 @@ Created on Tue Jan 19 18:06:16 2021
 import os
 from dotenv import load_dotenv,find_dotenv
 from aas_package import handlers
+from datetime import datetime
 
 #To load environment file
 load_dotenv(find_dotenv(),verbose=True,override=True)
@@ -47,10 +48,24 @@ if __name__ == "__main__":
     username = os.getenv("SQL_USER")
     password = os.getenv("SQL_PASSWORD")
 
+    start_time = datetime.strftime(datetime.now(), '%Y-%m-%dT00:00:00+00:00')
+    print(f'start time: {start_time}')
+    
     h = handlers.handler()
     h.config_zcrmapi(config,refresh_token,user_identifier)
     h.config_mysql(server, database, username, password)
     h.sync_app_checklist()
-    h.sync_records()    
+    #h.sync_records()    
+    h.sync_users()
+    h.sync_leads()       
+    h.sync_contacts()
+    h.sync_institutions()
+    h.sync_programs()
+    h.sync_applications()       
+    h.sync_campaigns()     
+    h.sync_tasks()
+    h.sync_deleted_records()   
+    close_time = datetime.strftime(datetime.now(), '%Y-%m-%dT00:00:00+00:00')
+    print(f'close time: {close_time}')
     
 

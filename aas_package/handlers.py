@@ -20,37 +20,42 @@ class handler():
     def config_mysql(self,server, database, username, password):
         self.aws_rds_mysql = aws_rds_mysql(server, database, username, password)
     
-    def sync_records(self):    
+    def sync_users(self):    
         ## users ###
         mylists = []
         mylists = self.zcrmapi.get_api_users('all')
         #print(mylists)
         self.aws_rds_mysql.sql_sync_users(mylists)
-        
+
+    def sync_leads(self):         
         # ## Lead ### after 1/1/2018
         mylists = []
         mylists = self.zcrmapi.api_get_leads(False)
         #print(mylists)
         self.aws_rds_mysql.sql_sync_leads(mylists)
-        
+    
+    def sync_contacts(self): 
         ### Contact ###
         mylists = []
         mylists = self.zcrmapi.api_get_contacts(False)
         #print(mylists)
         self.aws_rds_mysql.sql_sync_contacts(mylists)
         
+    def sync_institutions(self): 
         ### institutions ###
         mylists = []
         mylists = self.zcrmapi.api_get_institutions(False)
         #print(mylists)
         self.aws_rds_mysql.sql_sync_institutions(mylists)
-        
+    
+    def sync_programs(self): 
         ### programs ###
         mylists = []
         mylists = self.zcrmapi.api_get_programs(False)
         #print(mylists)
         self.aws_rds_mysql.sql_sync_programs(mylists)
-        
+
+    def sync_applications(self):         
         ### applications ### 
         mylists = []
         myappprogram = []
@@ -61,20 +66,22 @@ class handler():
         self.aws_rds_mysql.sql_sync_applications(mylists)
         self.aws_rds_mysql.sql_sync_app_program(myappprogram)
         self.aws_rds_mysql.sql_sync_app_stage_history(mystagehistory)
-        
+
+    def sync_campaigns(self):         
         ### Campaigns ###
         mylists = []
         mylists = self.zcrmapi.api_get_campaigns(False)
         #print(mylists)
         self.aws_rds_mysql.sql_sync_campaigns(mylists)
-        
+    
+    def sync_tasks(self): 
         ### tasks ###
         mylists = []
         mylists = self.zcrmapi.api_get_tasks(False,False)
         #print(mylists)
         self.aws_rds_mysql.sql_sync_tasks(mylists)
         
-        
+    def sync_deleted_records(self):     
         deleted_since = datetime.strftime(datetime.now() - timedelta(5), '%Y-%m-%dT00:00:00+00:00')
         #deleted_since = datetime.now() - timedelta(2)
         #print(deleted_since)
@@ -89,10 +96,9 @@ class handler():
         #print(mylists)
         #print('after sql')
         self.aws_rds_mysql.sql_mark_deleted_records(mylists)
-        
+    
+    def close_mysql(self):
         self.aws_rds_mysql.sql_close_conn()
-        last_run_datetime = datetime.strftime(datetime.now(), '%Y-%m-%dT00:00:00+00:00')
-        print(f'last run datetime: {last_run_datetime}')
     
     def sync_app_checklist(self):
         ### Update app checklist ###
